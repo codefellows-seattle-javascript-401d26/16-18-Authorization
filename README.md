@@ -43,6 +43,25 @@ npm run devDbOn
 npm run start-server
 ````
 
+## User Account Signup
+
+```
+[0]Benjamins-MBP:16-18-Authorization bwest$ echo '{"username":"bgwest88","password":"testing","email":"bgwest88@gmail.com"}' | http localhost:3000/user/signup
+HTTP/1.1 200 OK
+Connection: keep-alive
+Content-Length: 479
+Content-Type: application/json; charset=utf-8
+Date: Wed, 03 Oct 2018 19:53:36 GMT
+ETag: W/"1df-UJ6S/YNotpGafsvYA23YFYjP2wc"
+X-Powered-By: Express
+
+{
+    "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlblNlZWQiOiJmZTIzNDJiOTg0ZmFjYTg0OTBmYzRkMWI5NTkyZmI2ZTY5MzBiY2FhZmNmN2Q3ZWZjYTA3ODZiOWEwZjM2ZmY4MTM0MWI1NWJhNWYzYTMyYTNlNDNkMjU4MWM5YmRmZTE0MWFkYjA2Y2Y2MjRkNjhmMmRlZDlhOWYwYmY4YTk5NWYzY2I1ZmUyZjc4YzM5NmZjYjY3NzlkZjVjMmNmMWI0YWM3NWM4ZDJiZTEzOGIyZjQwYzRhMjdhNGIzMjhiMWRmNmU5ZDg0OGQ2ZGI0NDZmMjg0YTQxYWUxMGRmMTZlMmEzNDRjZjY2NWIyODY2YjBiNDI4ZjRkOGFmNzA3M2RhIiwiaWF0IjoxNTM4NTk2NDE2fQ.Yh777pTKYRTcjpfMUQLxv0wYsHAWpzXcJiwvfuKBk9I"
+}
+
+[0]Benjamins-MBP:16-18-Authorization bwest$
+```
+
 ## Blogpost manual testing
 
 *please note...*
