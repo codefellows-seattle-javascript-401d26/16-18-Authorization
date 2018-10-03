@@ -29,6 +29,21 @@ const accountSchema = mongoose.Schema({
 
 const TOKEN_SEED_LENGTH = 128;
 
+function pVerifyPassword(plainTextPassword) {
+  // uses current account schema
+  // e.g. .email, .tokenSeed, .passwordHash, .username
+
+  // behind the scences bcrypt is hasing
+  return bcrypt.compare(plainTextPassword, this.passwordHash)
+    .then((compareResult) => {
+      if (!compareResult) {
+        throw new HttpError(401, 'Unauthorized');
+      }
+      return this;
+    })
+    .catch(console.error);
+}
+
 function pCreateToken() {
   // development notes:
   //   The value of this in this function is equal to the
@@ -49,6 +64,8 @@ function pCreateToken() {
 
 // development note: adding pCreateToken to the account's prototype
 accountSchema.methods.pCreateToken = pCreateToken;
+accountSchema.methods.pVerifyPassword = pVerifyPassword;
+
 const AuthAccount = module.exports = mongoose.model('account', accountSchema);
 
 // development note: on a production system, this would be >=9

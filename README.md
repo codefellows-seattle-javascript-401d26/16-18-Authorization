@@ -1,30 +1,38 @@
 # 16: Basic Auth - app.js
-##### restful HTTP server built with express, mongodb, and mongoose
+##### restful HTTP server built with express, mongodb, mongoose, and basic auth
 [![Build Status](https://travis-ci.com/bgwest/16-18-Authorization.svg?branch=master)](https://travis-ci.com/bgwest/16-18-Authorization)
 ## Current Features
 
-These methods currently exist for creating, changing, deleting, and getting user data. Updates to this API will continue to stream in as this project moves forward. Currently I am part 14 of 14.
+These methods currently exist for creating, changing, deleting, and getting user data. This latest release includes the ability to singup and login using basic auth http/jsonwebtokens.
+
+Updates to this API will continue to stream in as this project moves forward. Currently I am part 16 of 18.
 
 ##### Note: 
 Using a database (mongodb) and ORM (mongoose) to perform the data processing, a new 'many' resource (schema) has been added called blog-post-schema.
 
 Each user can now manage their user account and also create, update, get, and delete blog posts.
+
+A user can now signup for a new account and receive a webtoken to be re-issued each login.
 ##### Also note: 
-new npm scripts have been added including a bash script to easily manage the devDb.
+new npm scripts have been added including a bash script to easily manage the devDb: devDbOff, dbDevOn (see package.json)
 
 ##### working routes & their methods:
 user-router.js,
-blog-post-router.js
+blog-post-router.js,
+auth-router.js
 * PUT
 * DELETE
 * POST
 * GET
+
+*and all of their wonderful variations...*
 
 ##### Utilizing:
 * express
 * middleware e.g. body-parser
 * mongodb
 * mongoose
+* jwt
 
 ## How To
 
@@ -43,7 +51,9 @@ npm run devDbOn
 npm run start-server
 ````
 
-## User Account Signup
+## User Auth Account manual testing
+
+[x] signup
 
 ```
 [0]Benjamins-MBP:16-18-Authorization bwest$ echo '{"username":"bgwest88","password":"testing","email":"bgwest88@gmail.com"}' | http localhost:3000/user/signup
@@ -57,6 +67,25 @@ X-Powered-By: Express
 
 {
     "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlblNlZWQiOiJmZTIzNDJiOTg0ZmFjYTg0OTBmYzRkMWI5NTkyZmI2ZTY5MzBiY2FhZmNmN2Q3ZWZjYTA3ODZiOWEwZjM2ZmY4MTM0MWI1NWJhNWYzYTMyYTNlNDNkMjU4MWM5YmRmZTE0MWFkYjA2Y2Y2MjRkNjhmMmRlZDlhOWYwYmY4YTk5NWYzY2I1ZmUyZjc4YzM5NmZjYjY3NzlkZjVjMmNmMWI0YWM3NWM4ZDJiZTEzOGIyZjQwYzRhMjdhNGIzMjhiMWRmNmU5ZDg0OGQ2ZGI0NDZmMjg0YTQxYWUxMGRmMTZlMmEzNDRjZjY2NWIyODY2YjBiNDI4ZjRkOGFmNzA3M2RhIiwiaWF0IjoxNTM4NTk2NDE2fQ.Yh777pTKYRTcjpfMUQLxv0wYsHAWpzXcJiwvfuKBk9I"
+}
+
+[0]Benjamins-MBP:16-18-Authorization bwest$
+```
+
+[x] After signing up, login again using GET / HTTP Basic Auth
+
+```
+[0]Benjamins-MBP:16-18-Authorization bwest$ http -a bgwest88:testing localhost:3000/user/auth/login
+HTTP/1.1 200 OK
+Connection: keep-alive
+Content-Length: 479
+Content-Type: application/json; charset=utf-8
+Date: Wed, 03 Oct 2018 20:36:50 GMT
+ETag: W/"1df-kdElK1XhmQrDGOlRA3DNy6pyras"
+X-Powered-By: Express
+
+{
+    "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlblNlZWQiOiI1Nzk5YzliYjU5NDA0NTE2YTFiNDM0MTkzMzcxMTIxNmQwNmMwZjM5MmQ3NmE2ZWZiMzM1N2YxZGVlZmMyZDY5OTU0Y2RiZjkxODQ1NTc5MjNmYjU1YmIwNDc5ZGM1NTEwYWU1MGIyMmUxZjBhZDViNzc3NjUwZGI1NTI0YmIwNjAxM2NmMGQ1MWQyYTA0MmYyZjQ5OWU2NzA2ZWM5NDBmMjViY2Y5ODM5OGUzN2EyNmZiY2EzNTk2NjNlYmUxMDc2NmI0Nzg2NDRjODE1MDhiZTllNmIwZGIxY2EzZjhjZmY0NjU1NDFiNzZiZTAzM2VlNTU5YzMzZjY4ZGQ2MzU5IiwiaWF0IjoxNTM4NTk5MDEwfQ.A1fl9AXFLWx60XWkp8RMEY77zjJ4lBsn5lHkH_IWUoE"
 }
 
 [0]Benjamins-MBP:16-18-Authorization bwest$
@@ -327,6 +356,16 @@ X-Powered-By: Express
 
 * 12: creating mock blog post / user and then deleting it
 
+#### auth-router.js
+
+* 13: 
+
+* 14: 
+
+* 15: 
+
+* 16: 
+
 ### Installing
 
 To use this in your code:
@@ -346,6 +385,9 @@ To use this in your code:
 * faker
 * superagent
 * uuid
+* bcrypt
+* jsonwebtoken
+* crypto
 
 See package.json for dependency details.
 
