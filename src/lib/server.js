@@ -10,6 +10,7 @@ const errorMiddleware = require('./error-middleware');
 
 const userRoutes = require('../routes/user-router');
 const blogPostRoutes = require('../routes/blog-post-router');
+const authAccountRoutes = require('../routes/auth-router');
 
 const app = express();
 
@@ -21,6 +22,7 @@ const app = express();
 app.use(loggerMiddleware);
 app.use(userRoutes);
 app.use(blogPostRoutes);
+app.use(authAccountRoutes);
 
 app.all('*', (request, response) => {
   logger.log(logger.INFO, '404 - catch-all/default route (route was not found)');
