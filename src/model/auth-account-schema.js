@@ -4,6 +4,7 @@ const mongoose = require('mongoose');
 const crypto = require('crypto'); // produces random bytes
 const jsonWebToken = require('jsonwebtoken'); // actually doing the crypto
 const bcrypt = require('bcrypt'); // this handles the hashing
+const HttpError = require('http-errors');
 
 const accountSchema = mongoose.Schema({
   username: {
@@ -41,7 +42,9 @@ function pVerifyPassword(plainTextPassword) {
       }
       return this;
     })
-    .catch(console.error);
+    .catch((error) => {
+      throw error;
+    });
 }
 
 function pCreateToken() {

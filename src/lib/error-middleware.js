@@ -15,10 +15,20 @@ module.exports = (error, request, response, next) => { // eslint-disable-line no
   // ----------------------------------------------------------
   const errorMessage = error.message.toLowerCase(); // O(n)
 
-
   if (errorMessage.includes('failed for value')) { // (n)
     logger.log(logger.ERROR, 'Responding with a 404 code.');
     logger.log(logger.ERROR, 'bad URI given for delete.');
+    return response.sendStatus(404);
+  }
+
+  if (errorMessage.includes('unauthorized')) {
+    logger.log(logger.ERROR, 'unauthorized');
+    return response.sendStatus(401);
+  }
+
+  if (errorMessage.includes('not found')) {
+    logger.log(logger.ERROR, 'Responding with a 404 code.');
+    logger.log(logger.ERROR, 'Bad route.');
     return response.sendStatus(404);
   }
 

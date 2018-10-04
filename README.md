@@ -358,13 +358,17 @@ X-Powered-By: Express
 
 #### auth-router.js
 
-* 13: 
+* 13: test if 404 is returned if any route is invalid
 
-* 14: 
+* 14: test if 200 is returned with a token on successful signup
 
-* 15: 
+* 15: test if a 400 is sent body data is missing (e.g. username)
 
-* 16: 
+* 16: est if a 400 is returned when no creation data is sent (no body)
+
+* 17: test if 200 and your token is returned on successful login
+
+* 18: test for 401 status if auth fails (aka bad pw or username)
 
 ### Installing
 

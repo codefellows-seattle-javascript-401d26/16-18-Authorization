@@ -13,7 +13,7 @@ const router = module.exports = new express.Router();
 
 router.post('/user/signup', jsonParser, (request, response, next) => {
   if (!request.body.password) {
-    return next(new HttpError(401, ''));
+    return next(new HttpError(400, 'missing parameters'));
   }
   return Account.create(request.body.username, request.body.email,
     request.body.password) // 1. Hash password

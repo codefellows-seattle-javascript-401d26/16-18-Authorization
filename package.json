@@ -25,6 +25,7 @@
   },
   "scripts": {
     "test": "eslint . && jest --coverage --forceExit --runInBand",
+    "jestSF": "./node_modules/jest/bin/jest.js --coverage --forceExit --runInBand $1",
     "justJest": "jest --coverage --forceExit --runInBand",
     "justLint": "./node_modules/eslint/bin/eslint.js ./src/*.js",
     "start-server": "./makesure.sh; node ./src/app.js",
