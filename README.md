@@ -476,25 +476,25 @@ X-Powered-By: Express
 
 #### image-router.js
 
-* 19: 
+* 19: test - post request with a valid body and token should return 200
 
-* 20: 
+* 20: test - on post, if no token was provided, should return 401
 
-* 21: 
+* 21: test - on post, if no body was provided or if the body was invalid should return 400
 
-* 22: 
+* 22: GET - test 200, for a request made with a valid id
 
-* 23: 
+* 23: GET - test 401, if no token was provided
 
-* 24: 
+* 24: GET - test 404, for a valid request with an id that was not found
 
-* 25:
+* 25: PUT - test 200, for a post request with a valid body
 
-* 26:
+* 26: PUT - test 401, if no token was provided
 
-* 27:
+* 27: PUT - test 400, if the body was invalid
 
-* 28: 
+* 28: PUT - test 404, for a valid request made with an id that was not found
 
 ### Installing
 

@@ -24,7 +24,7 @@ const promisify = callbackStyleFunction => (...args) => {
 
 module.exports = (request, response, next) => {
   if (!request.headers.authorization) {
-    return next(new HttpError(400, 'Not authorized.'));
+    return next(new HttpError(401, 'Not authorized.'));
   }
 
   const token = request.headers.authorization.split('Bearer ')[1];
