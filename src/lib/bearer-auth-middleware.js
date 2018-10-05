@@ -14,9 +14,9 @@ const promisify = callbackStyleFunction => (...args) => {
   return new Promise((resolve, reject) => {
     callbackStyleFunction(...args, (error, data) => {
       if (error) {
-        return reject(error); // Vinicio - .catch
+        return reject(error); // can now chain a .catch
       }
-      return resolve(data); // Vinicio -  .then
+      return resolve(data); // can now chain a .then
     });
   });
 };
