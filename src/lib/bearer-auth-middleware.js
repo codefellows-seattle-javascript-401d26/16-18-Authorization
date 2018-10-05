@@ -24,7 +24,7 @@ const promisify = callbackStyleFunction => (...args) => {
 
 module.exports = (request, response, next) => {
   if (!request.headers.authorization) {
-    return next(new HttpError(400, 'AUTH - invalid request'));
+    return next(new HttpError(400, 'Not authorized.'));
   }
 
   const token = request.headers.authorization.split('Bearer ')[1];
@@ -32,7 +32,7 @@ module.exports = (request, response, next) => {
   if (!token) {
     return next(new HttpError(400, 'AUTH - invalid request'));
   }
-  return promisify(jsonWebToken.verify)(token, process.env.SECRET)
+  return promisify(jsonWebToken.verify)(token, process.env.APP_SECRET)
     .then((decryptedToken) => {
       return Account.findOne({ tokenSeed: decryptedToken.tokenSeed });
     })

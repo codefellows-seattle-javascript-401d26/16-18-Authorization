@@ -6,12 +6,12 @@ const server = require('../lib/server');
 // const imageMock = require('./lib/image-mock');
 const authAccountMock = require('./lib/auth-account-mock');
 
-const API_URL = `http://localhost:${process.env.PORT}/upload/image`;
+const API_URL = `http://localhost:${process.env.PORT}/image/upload`;
 
-describe('testing route /upload/image', () => {
+describe('testing route /image/upload', () => {
   beforeAll(server.start);
   afterAll(server.stop);
-  beforeEach(authAccountMock.pCleanAuthAccountMocks);
+  // beforeEach(authAccountMock.pCleanAuthAccountMocks);
 
   test('should respond with 200 status code and an image', () => {
     return authAccountMock.pCreateMock()
@@ -21,6 +21,7 @@ describe('testing route /upload/image', () => {
           .send({
             title: faker.lorem.words(3),
             url: faker.internet.url(),
+            // account: mock.account._id.toString(),
             // development note: the account id will be tied by the route itself
           });
       })

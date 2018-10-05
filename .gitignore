@@ -1,3 +1,6 @@
+#ignore token file for fast command line testing with httpie
+.token
+
 # ignore httpie .netrc basic auth header test file
 .netrc
 
